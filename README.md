@@ -37,7 +37,27 @@ clusters/
      --path=./clusters/default
    ```
 
-3. Update the GitRepository URL in `clusters/default/flux-system/gotk-sync.yaml` with your actual repository URL.
+## Checking Status
+
+Quick health check:
+```bash
+kubectl get gitrepositories,kustomizations -n flux-system
+```
+
+Full status check:
+```bash
+kubectl get pods,gitrepositories,kustomizations -n flux-system
+```
+
+Detailed status (if Flux CLI is installed):
+```bash
+flux get all
+```
+
+Or use the status script:
+```bash
+./scripts/check-status.sh
+```
 
 ## Adding Resources
 
