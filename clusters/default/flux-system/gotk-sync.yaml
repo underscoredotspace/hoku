@@ -21,4 +21,4 @@ spec:
   interval: 1m0s
   ref:
     branch: main
-  url: https://github.com/your-org/hoku
+  url: https://github.com/underscoredotspace/hoku
