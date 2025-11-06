@@ -60,11 +60,6 @@ Detailed status (if Flux CLI is installed):
 flux get all
 ```
 
-Or use the status script:
-```bash
-./scripts/check-status.sh
-```
-
 ## Apps vs Infrastructure
 
 This repository separates **infrastructure** components from **applications** for better organization and management.
