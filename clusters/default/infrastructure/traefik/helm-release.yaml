@@ -16,8 +16,4 @@ spec:
   install:
     createNamespace: true
   values:
-    # Enable ping endpoint for health checks
-    # Accessible at http://<loadbalancer-ip>/ping
-    ping:
-      entryPoint: web
 

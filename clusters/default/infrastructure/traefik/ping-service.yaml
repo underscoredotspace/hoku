@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-ping
+  namespace: traefik
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: ping
+  selector:
+    app.kubernetes.io/name: traefik
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: lan-only
+  namespace: traefik
+spec:
+  ipWhiteList:
+    sourceRange:
+      # RFC1918 private ranges
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+      # Also include localhost if you ever curl from inside Traefik
+      - 127.0.0.1/32
+      - ::1/128
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-ping
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Path(`/ping`)
+      kind: Rule
+      middlewares:
+        - name: lan-only
+      services:
+        - name: traefik-ping
+          port: 8080
+
