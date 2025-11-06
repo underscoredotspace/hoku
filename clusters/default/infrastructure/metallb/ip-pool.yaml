@@ -15,4 +15,10 @@ metadata:
 spec:
   ipAddressPools:
     - default-pool
+  # Specify interfaces on the 10.102.1.x subnet for ARP announcements
+  # br0 is on pinky (10.102.1.249), other nodes may have different interfaces
+  interfaces:
+    - br0
+    - eth0
+    - wlan0
 
