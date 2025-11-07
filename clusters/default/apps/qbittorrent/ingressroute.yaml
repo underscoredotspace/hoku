@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: qbittorrent
+  namespace: qbittorrent
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`downloads.hoku.messy.cloud`)
+      kind: Rule
+      services:
+        - name: qbittorrent
+          port: 8080
+  # Uncomment and configure if you have cert-manager for TLS
+  # tls:
+  #   certResolver: letsencrypt
+
