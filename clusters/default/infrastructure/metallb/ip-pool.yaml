@@ -5,7 +5,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 10.102.1.180/24
+    - 10.10.3.0/24
 ---
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
@@ -18,7 +18,7 @@ spec:
   # Specify interfaces on the 10.102.1.x subnet for ARP announcements
   # br0 is on pinky (10.102.1.249), other nodes may have different interfaces
   interfaces:
-    - br0
     - eth0
-    - wlan0
+    # - br0
+    # - wlan0
 
